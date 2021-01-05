@@ -2,7 +2,9 @@
 
 namespace Huacha\Permissions;
 
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class PermissionsGenerate extends Command
 {
@@ -18,7 +20,7 @@ class PermissionsGenerate extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generate permissions app';
 
     /**
      * Create a new command instance.
@@ -37,6 +39,20 @@ class PermissionsGenerate extends Command
      */
     public function handle()
     {
+
+        try{
+            DB::beginTransaction();
+            Permissions::truncate();
+            $this->info('Clean all permissions table');
+            Permissions::make();
+            $this->info('success!!');
+            DB::commit();
+            return 0;
+        }catch(Exception $e){
+            DB::rollBack();
+            $this->error($e->getMessage());
+            return 0;
+        }
         return 0;
     }
 }

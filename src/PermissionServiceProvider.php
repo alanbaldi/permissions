@@ -24,7 +24,6 @@ class PermissionServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->publishes([
             __DIR__.'/config/permissions.php' => config_path('permissions.php')

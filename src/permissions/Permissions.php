@@ -128,11 +128,6 @@ class Permissions{
             }
         }
     }
-
-    private static function output() : ConsoleOutput{
-        return new ConsoleOutput();
-    }
-
     public static function truncate(){
         DB::statement("SET foreign_key_checks=0");
         Module::truncate();

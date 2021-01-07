@@ -17,4 +17,10 @@ class Action extends Model
     public function group() : BelongsTo{
         return $this->belongsTo(Group::class);
     }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class,'roles_actions');
+    }
+
+
 }

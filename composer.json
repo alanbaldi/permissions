@@ -14,7 +14,10 @@
     "autoload": {
         "psr-4": {
             "Huacha\\Permissions\\": "src/"
-        }
+        },
+        "files":[
+            "helpers/helpers.php"
+        ]
     }
 
 }

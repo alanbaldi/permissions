@@ -31,8 +31,11 @@ class Permissions{
             }
         }
 
-        self::assignPermissions();
         self::createGroups();
+        self::assignPermissions();
+
+        //some modules are not related, so i relate them to themselves
+        self::moduleRelashions();
 
     }
 
@@ -77,8 +80,10 @@ class Permissions{
 
         $modules = Module::all();
         $actions = Action::all();
+        $groups = Group::all();
         $root->modules()->attach($modules);
         $root->actions()->attach($actions);
+        $root->groups()->attach($groups);
 
     }
 
@@ -139,4 +144,15 @@ class Permissions{
         DB::statement("SET foreign_key_checks=1");
     }
 
+    private static function moduleRelashions(){
+        $modules = Module::where([
+            'module_id' => null
+        ])->get();
+
+        foreach($modules as $module){
+            $module->update([
+                'module_id' => $module->id
+            ]);
+        }
+    }
 }

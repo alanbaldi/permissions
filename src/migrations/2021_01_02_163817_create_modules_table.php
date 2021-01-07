@@ -18,6 +18,7 @@ class CreateModulesTable extends Migration
             $table->string('name')->unique();
             $table->string('prefix')->unique();
             $table->string('description');
+            $table->boolean('active')->default(true);
             $table->bigInteger('module_id')->nullable();
             $table->timestamps();
         });

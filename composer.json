@@ -1,5 +1,5 @@
 {
-    "name": "huacha/permissions",
+    "name": "knigthfall/permissions",
     "description": "Paquete para controlar permisos en laravel",
     "type": "library",
     "license": "MIT",

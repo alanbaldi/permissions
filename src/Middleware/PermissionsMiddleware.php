@@ -22,6 +22,7 @@ class PermissionsMiddleware
     {
 
         try{
+            
 
             if(env("APP_DEBUG")) { return $next($request); } //test mode
 
@@ -40,7 +41,7 @@ class PermissionsMiddleware
                 $search_module = $names[0];
                 
             }else if(count($names) >= 2){
-                $search_accion = $names[count($names)-1]; //get name action
+                $search_accion = explode(':permission',$names[count($names)-1])[0];  //get name action
                 $search_module = $names[count($names)-2]; //get name module
             }else {
                 throw new Exception($config_permissions['invalid_route']);
@@ -55,9 +56,12 @@ class PermissionsMiddleware
                 throw new Exception($config_permissions['module_not_found']);
             }
 
-            $accion = Action::where('modulo_id',$module->id)
+            // dd($module,$search_accion);
+
+            $accion = Action::where('module_id',$module->id)
             ->where('name',$search_accion)
             ->first();
+
 
             if(is_null($accion)){ //valido si existe la accion
                 throw new Exception('action_not_found');

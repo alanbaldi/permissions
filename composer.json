@@ -1,5 +1,5 @@
 {
-    "name": "knigthfall/permissions",
+    "name": "lamplighter/permissions",
     "description": "Paquete para controlar permisos en laravel",
     "type": "library",
     "license": "MIT",

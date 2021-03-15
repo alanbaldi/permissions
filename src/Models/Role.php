@@ -9,9 +9,6 @@ class PermissionRole extends Model
 {
     protected $guarded = [];
     protected $table = 'permissions_roles';
-
-
-    
     //
     public function modules() : BelongsToMany{
         return $this->belongsToMany(PermissionModule::class,'permissions_roles_modules','role_id','module_id');

@@ -16,7 +16,6 @@
             "Lamplighter\\Permissions\\": "src/"
         },
         "files":[
-            "helpers/helpers.php"
         ]
     }
 

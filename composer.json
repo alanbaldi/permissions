@@ -5,15 +5,15 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "alanbaldi",
-            "email": "alanortizbaldizon@hotmail.com"
+            "name": "lamplighter",
+            "email": "alanortiz97baldizon@outlook.com"
         }
     ],
     "minimum-stability": "stable",
     "require": {},
     "autoload": {
         "psr-4": {
-            "Huacha\\Permissions\\": "src/"
+            "Lamplighter\\Permissions\\": "src/"
         },
         "files":[
             "helpers/helpers.php"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Huacha\Permissions;
+namespace Lamplighter\Permissions;
 
 use Exception;
 use Illuminate\Console\Command;

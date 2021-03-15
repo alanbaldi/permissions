@@ -1,10 +1,10 @@
 <?php 
 
-namespace Huacha\Permissions;
+namespace Lamplighter\Permissions;
 
 use Exception;
-use Huacha\Permissions\Models\Action;
-use Huacha\Permissions\Models\Module;
+use Lamplighter\Permissions\Models\Action;
+use Lamplighter\Permissions\Models\Module;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +15,7 @@ trait Admissibleness {
         try{
             $route_name = Route::currentRouteName();
     
-            $config_permissions = config('permissions');
+            $config_permissions = config('permissions')['messages'];
     
             $names = explode(".",$route_name);
     
@@ -31,7 +31,10 @@ trait Admissibleness {
                 throw new Exception($config_permissions['module_inactive'], 1);
             }
     
-            $modulo_role = DB::table('roles_modules')->where('module_id', $modulo->id)->where('role_id', $role_id)->first();
+            $modulo_role = DB::table('roles_modules')
+            ->where('module_id', $modulo->id)
+            ->where('role_id', $role_id)
+            ->first();
     
             if (is_null($modulo_role)){ 
                 throw new Exception($config_permissions['permissions_denied'], 1);
@@ -49,7 +52,5 @@ trait Admissibleness {
            return collect([]);
         }
     }
-
-    
 
 }

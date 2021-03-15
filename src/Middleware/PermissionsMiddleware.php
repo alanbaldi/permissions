@@ -1,13 +1,15 @@
 <?php
 
-namespace Huacha\Permissions;
+namespace Lamplighter\Permissions;
 
 use Closure;
 use Exception;
-use Huacha\Permissions\Models\Action;
-use Huacha\Permissions\Models\Module;
+use Lamplighter\Permissions\Models\Action;
+use Lamplighter\Permissions\Models\Module;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Lamplighter\Permissions\Models\PermissionAction;
+use Lamplighter\Permissions\Models\PermissionModule;
 
 class PermissionsMiddleware
 {
@@ -49,7 +51,7 @@ class PermissionsMiddleware
 
             /** Search module  if exist */
 
-            $module = Module::where('prefix',$search_module)
+            $module = PermissionModule::where('prefix',$search_module)
             ->first();
 
             if(is_null($module)){
@@ -58,7 +60,7 @@ class PermissionsMiddleware
 
             // dd($module,$search_accion);
 
-            $accion = Action::where('module_id',$module->id)
+            $accion = PermissionAction::where('module_id',$module->id)
             ->where('name',$search_accion)
             ->first();
 
@@ -69,7 +71,7 @@ class PermissionsMiddleware
 
             $role_id = Auth::user()->role->id;
 
-            $access = Action::whereHas('roles',function($roleModel) use ($role_id,$accion) {
+            $access = PermissionAction::whereHas('roles',function($roleModel) use ($role_id,$accion) {
                 $roleModel->where('role_id',$role_id)
                 ->where('action_id',$accion->id);
             })
@@ -87,7 +89,7 @@ class PermissionsMiddleware
                 return response()->json([
                     'status'=>false,
                     'msg'=> $config_permissions['permissions_denied']
-                ]);
+                ],403);
             }
 
             abort(403);

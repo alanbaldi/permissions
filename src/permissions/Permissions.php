@@ -1,13 +1,14 @@
 <?php 
 
-namespace Huacha\Permissions;
+namespace Lamplighter\Permissions;
 
-use Huacha\Permissions\Models\Action;
-use Huacha\Permissions\Models\Group;
-use Huacha\Permissions\Models\Module;
-use Huacha\Permissions\Models\Role;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Lamplighter\Permissions\Models\PermissionAction;
+use Lamplighter\Permissions\Models\PermissionGroup;
+use Lamplighter\Permissions\Models\PermissionModule;
+use Lamplighter\Permissions\Models\PermissionRole;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Permissions{
@@ -24,7 +25,7 @@ class Permissions{
                 unset($names[count($names)-1]);
                 $array_names = explode('.',$names[0]);
 
-                $action = Action::create([
+                $action = PermissionAction::create([
                     'full_name' => $names[0]
                 ]);
                 self::generate($array_names,$action);
@@ -54,7 +55,7 @@ class Permissions{
 
             foreach($groups as $g){
 
-                $group = Group::create([
+                $group = PermissionGroup::create([
                     'name' => $g['name'],
                     'description' => $g['description']
                 ]);
@@ -62,7 +63,7 @@ class Permissions{
                 if(array_key_exists('actions',$g)){
 
                     foreach($g['actions'] as $action){
-                        $action = Action::where('full_name',$action)->first();
+                        $action = PermissionAction::where('full_name',$action)->first();
                         if(is_null($action)){ continue; }
                         $group->actions()->attach($action);
                     }
@@ -74,13 +75,13 @@ class Permissions{
     }
 
     private static function assignPermissions(){
-        $root = Role::where('description','root')->first() ?: Role::create([
+        $root = PermissionRole::where('description','root')->first() ?: PermissionRole::create([
             'description' => 'root'
         ]);
 
-        $modules = Module::all();
-        $actions = Action::all();
-        $groups = Group::all();
+        $modules = PermissionModule::all();
+        $actions = PermissionAction::all();
+        $groups = PermissionGroup::all();
         $root->modules()->attach($modules);
         $root->actions()->attach($actions);
         $root->groups()->attach($groups);
@@ -88,11 +89,11 @@ class Permissions{
     }
 
 
-    private static function generate(array $names,Action $action){
+    private static function generate(array $names,PermissionAction $action){
         $total_names = count($names);
 
         if($total_names == 1){
-            $module = Module::where('prefix',$names[0])->first() ?: Module::create([
+            $module = PermissionModule::where('prefix',$names[0])->first() ?: PermissionModule::create([
                 'name' => $names[0],
                 'prefix' => $names[0],
                 'description' => $names[0]
@@ -119,9 +120,9 @@ class Permissions{
                         'module_id' => (!is_null($module)) ? $module->id : null
                     ]);
                 }else {
-                    $m = Module::where('prefix',$name)->first();
+                    $m = PermissionModule::where('prefix',$name)->first();
 
-                    $module = $m ?: Module::create([
+                    $module = $m ?: PermissionModule::create([
                         'name' => $name,
                         'prefix' => $name,
                         'description' => $name,
@@ -135,17 +136,17 @@ class Permissions{
     }
     public static function truncate(){
         DB::statement("SET foreign_key_checks=0");
-        Module::truncate();
-        Action::truncate();
-        Group::truncate();
-        DB::table('roles_actions')->truncate();
-        DB::table('roles_groups')->truncate();
-        DB::table('groups_actions')->truncate();
+        PermissionModule::truncate();
+        PermissionAction::truncate();
+        PermissionGroup::truncate();
+        DB::table('permissions_roles_actions')->truncate();
+        DB::table('permissions_roles_groups')->truncate();
+        DB::table('permissions_groups_actions')->truncate();
         DB::statement("SET foreign_key_checks=1");
     }
 
     private static function moduleRelashions(){
-        $modules = Module::where([
+        $modules = PermissionModule::where([
             'module_id' => null
         ])->get();
 

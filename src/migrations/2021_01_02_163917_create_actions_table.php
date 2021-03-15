@@ -13,13 +13,13 @@ class CreateActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('actions', function (Blueprint $table) {
+        Schema::create('permissions_actions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable()->unique();
-            $table->string('prefix')->nullable()->unique();
+            $table->string('name')->nullable();
+            $table->string('prefix')->nullable();
             $table->string('description')->nullable();
             $table->string('full_name');
-            $table->foreignId('module_id')->nullable()->constrained();
+            $table->foreignId('module_id')->nullable()->constrained('permissions_modules');
             $table->timestamps();
         });
     }

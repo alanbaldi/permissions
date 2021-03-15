@@ -13,10 +13,10 @@ class CreateGroupsActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups_actions', function (Blueprint $table) {
+        Schema::create('permissions_groups_actions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained();
-            $table->foreignId('action_id')->constrained();
+            $table->foreignId('group_id')->constrained('permissions_groups');
+            $table->foreignId('action_id')->constrained('permissions_actions');
             $table->timestamps();
         });
     }

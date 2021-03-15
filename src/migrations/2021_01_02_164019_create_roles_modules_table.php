@@ -13,10 +13,10 @@ class CreateRolesModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles_modules', function (Blueprint $table) {
+        Schema::create('permissions_roles_modules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained();
-            $table->foreignId('module_id')->constrained();
+            $table->foreignId('role_id')->constrained('permissions_roles');
+            $table->foreignId('module_id')->constrained('permissions_modules');
             $table->timestamps();
         });
     }

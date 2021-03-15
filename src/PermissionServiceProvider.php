@@ -1,6 +1,6 @@
 <?php
 
-namespace Huacha\Permissions;
+namespace Lamplighter\Permissions;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +14,8 @@ class PermissionServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
+        $this->app->make(LamplighterPermissionsController::class);
     }
 
     /**
@@ -25,6 +27,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         //
         $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->publishes([
             __DIR__.'/config/permissions.php' => config_path('permissions.php')
         ],'permissions-config');

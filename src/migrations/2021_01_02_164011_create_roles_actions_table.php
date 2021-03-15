@@ -13,10 +13,10 @@ class CreateRolesActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles_actions', function (Blueprint $table) {
+        Schema::create('permissions_roles_actions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained();
-            $table->foreignId('action_id')->constrained();
+            $table->foreignId('role_id')->constrained('permissions_roles');
+            $table->foreignId('action_id')->constrained('permissions_actions');
             $table->timestamps();
         });
     }

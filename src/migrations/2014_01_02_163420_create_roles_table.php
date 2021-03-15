@@ -13,7 +13,7 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('permissions_roles', function (Blueprint $table) {
             $table->id();
             $table->string('description');
             $table->timestamps();

@@ -13,7 +13,7 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('permissions_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description');

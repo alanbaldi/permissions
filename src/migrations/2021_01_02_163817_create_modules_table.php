@@ -13,7 +13,7 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('permissions_modules', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('prefix')->unique();

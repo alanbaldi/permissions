@@ -142,6 +142,7 @@ class Permissions{
         DB::table('permissions_roles_actions')->truncate();
         DB::table('permissions_roles_groups')->truncate();
         DB::table('permissions_groups_actions')->truncate();
+        DB::table('permissions_roles_modules')->truncate();
         DB::statement("SET foreign_key_checks=1");
     }
 

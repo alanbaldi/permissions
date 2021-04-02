@@ -2,7 +2,7 @@ Intalación
 
 composer require lamplighter/permissions
 
-Despuesta de haber instalado procede a agregarlo en los providers que se encuentra en config/app.php
+Despues de haber instalado procede a agregarlo en los providers que se encuentra en config/app.php
 
 
 Ejecutar los siguientes comandos

@@ -11,10 +11,10 @@ class PermissionModule extends Model
     protected $table = 'permissions_modules';
     protected $guarded = [];
     public function actions() : HasMany{
-        return $this->hasMany(PermissionAction::class,'id','module_id');
+        return $this->hasMany(PermissionAction::class,'module_id','id');
     }
 
     public function modules() : HasMany{
-        return $this->hasMany(PermissionModule::class,'id','module_id');
+        return $this->hasMany(PermissionModule::class,'module_id','id');
     }
 }

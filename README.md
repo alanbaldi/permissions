@@ -2,12 +2,12 @@ Intalación
 
 composer require lamplighter/permissions
 
-Despues de haber instalado procede a agregarlo en los providers que se encuentra en config/app.php
+Despues de haber instalado procede a agregar \Lamplighter\Permissions\PermissionServiceProvider::class en los providers que se encuentra en config/app.php
 
 
 Ejecutar los siguientes comandos
 
-php artisan vendor:pusblish --tag="permissions-config"
+php artisan vendor:pusblish--tag="permissions-config"
 
 php artisan vendor:publish --tag="permissions-migrations"
 

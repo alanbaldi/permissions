@@ -15,4 +15,8 @@ class PermissionGroup extends Model
     public function actions() : BelongsToMany{
         return $this->belongsToMany(PermissionAction::class,'permissions_groups_actions','group_id','action_id');
     }
+
+
+
+    
 }

@@ -15,7 +15,7 @@ Ejecutar los siguientes comandos
 
 <pre>
 
-php artisan vendor:pusblish--tag="permissions-config"
+php artisan vendor:publish--tag="permissions-config"
 
 php artisan vendor:publish --tag="permissions-migrations"
 

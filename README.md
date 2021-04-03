@@ -29,7 +29,7 @@ Para agregar tus rutas a los permisos se debe poner "permissions" al final del n
 
 <pre>Route::get('foo',[Controller::class,'foo'])->name('foo:permissions');</pre>
 
-despues de esto ejecutar el comando
+Despues de esto ejecutar el comando
 
 <pre>php artisan permissions:generate</pre>
 

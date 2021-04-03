@@ -1,4 +1,8 @@
+<style></style>
+
 <h2>Instalación</h2> 
+
+<div></div>
 
 <strong>composer require lamplighter/permissions</strong>
 

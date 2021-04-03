@@ -13,11 +13,17 @@ Despues de haber instalado procede a agregar \Lamplighter\Permissions\Permission
 
 Ejecutar los siguientes comandos
 
+<pre>
+
 php artisan vendor:pusblish--tag="permissions-config"
 
 php artisan vendor:publish --tag="permissions-migrations"
 
 php artisan migrate
+
+</pre>
+
+
 
 Para agregar tus rutas a los permisos se debe poner "permissions" al final del nombre de tu ruta
 

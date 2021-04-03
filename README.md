@@ -2,7 +2,7 @@
 
 <h2>Instalación</h2> 
 
-<div style="border:1px solid #ccc !important;padding:10px;">
+<div style="border:1px solid #ccc !important;padding:10px;height:100px">
   <strong>composer require lamplighter/permissions</strong>
 </div>
 

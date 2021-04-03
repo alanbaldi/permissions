@@ -6,6 +6,10 @@
   <strong>composer require lamplighter/permissions</strong>
 </div>
 
+<pre>
+  fasdfasdfasdfasd
+</pre>
+
 
 
 Despues de haber instalado procede a agregar \Lamplighter\Permissions\PermissionServiceProvider::class en los providers que se encuentra en config/app.php

@@ -1,4 +1,4 @@
-Intalación 
+<h2>Instalación</h2> 
 
 composer require lamplighter/permissions
 

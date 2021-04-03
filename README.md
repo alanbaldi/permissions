@@ -1,10 +1,12 @@
-<style></style>
+
 
 <h2>Instalación</h2> 
 
-<div></div>
-
+<div style="border:1px solid black">
 <strong>composer require lamplighter/permissions</strong>
+</div>
+
+
 
 Despues de haber instalado procede a agregar \Lamplighter\Permissions\PermissionServiceProvider::class en los providers que se encuentra en config/app.php
 

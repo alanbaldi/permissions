@@ -27,11 +27,11 @@ php artisan migrate
 
 Para agregar tus rutas a los permisos se debe poner "permissions" al final del nombre de tu ruta
 
-Route::get('foo',[Controller::class,'foo'])->name('foo:permissions');
+<pre>Route::get('foo',[Controller::class,'foo'])->name('foo:permissions');</pre>
 
 despues de esto ejecutar el comando
 
-php artisan permissions:generate
+<pre>php artisan permissions:generate</pre>
 
 
 

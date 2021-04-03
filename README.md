@@ -3,7 +3,7 @@
 <h2>Instalación</h2> 
 
 <pre>
-  <strong>composer require lamplighter/permissions</strong>
+  composer require lamplighter/permissions
 </pre>
 
 

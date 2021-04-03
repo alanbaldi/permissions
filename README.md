@@ -23,7 +23,7 @@ php artisan migrate
 
 </pre>
 
-
+<h2>Uso</h2>
 
 Para agregar tus rutas a los permisos se debe poner "permissions" al final del nombre de tu ruta
 

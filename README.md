@@ -15,15 +15,17 @@ Despues de haber instalado procede a agregar en los providers que se encuentra e
 
 Ejecutar los siguientes comandos
 
-<pre>
-
+```php
 php artisan vendor:publish--tag="permissions-config"
+```
 
+```php
 php artisan vendor:publish --tag="permissions-migrations"
+```
 
+```php
 php artisan migrate
-
-</pre>
+```
 
 <h2>Uso</h2>
 

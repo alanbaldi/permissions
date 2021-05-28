@@ -37,7 +37,9 @@ Route::get('foo',[Controller::class,'foo'])->name('foo:permissions')
 
 Despues de esto ejecutar el comando
 
-<pre>php artisan permissions:generate</pre>
+```sh 
+artisan permissions:generate
+```
 
 
 

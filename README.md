@@ -8,8 +8,10 @@
 
 
 
-Despues de haber instalado procede a agregar <strong>\Lamplighter\Permissions\PermissionServiceProvider::class</strong> en los providers que se encuentra en <strong>config/app.php</strong>
-
+Despues de haber instalado procede a agregar en los providers que se encuentra en <strong>config/app.php</strong>
+```php
+\Lamplighter\Permissions\PermissionServiceProvider::class
+```
 
 Ejecutar los siguientes comandos
 

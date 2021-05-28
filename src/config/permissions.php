@@ -1,18 +1,7 @@
 <?php 
 
 return [
-    'groups' => [
-
-        /** Create groups */
-
-        /*[
-            'name' => 'group 1',
-            'description' => 'asdfasdfasdfasdfas',
-            'actions' => [
-                'complete.name.route',
-            ]
-        ],*/
-    ],
+    'groups' => [],
     'messages' => [
         'invalid_route' => 'Invalid route',
         'module_not_found' => 'Module not found',
@@ -20,6 +9,4 @@ return [
         'permissions_denied' => 'Permision denied',
         'module_inactive' => 'Inactive module',
     ],
-
-
 ];

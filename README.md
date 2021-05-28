@@ -2,9 +2,9 @@
 
 <h2>Instalación</h2> 
 
-<pre>
-  composer require lamplighter/permissions
-</pre>
+```sh 
+composer require lamplighter/permissions
+```
 
 
 

@@ -15,7 +15,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         //
 
-        $this->app->make(LamplighterPermissionsController::class);
+        // $this->app->make(LamplighterPermissionsController::class);
     }
 
     /**
@@ -27,7 +27,6 @@ class PermissionServiceProvider extends ServiceProvider
     {
         //
         $this->loadMigrationsFrom(__DIR__.'/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->publishes([
             __DIR__.'/config/permissions.php' => config_path('permissions.php')
         ],'permissions-config');
@@ -38,7 +37,8 @@ class PermissionServiceProvider extends ServiceProvider
 
         if($this->app->runningInConsole()){
             $this->commands([
-                PermissionsGenerate::class
+                PermissionsGenerate::class,
+                PermissionsMakeGroups::class,
             ]);
         }
     }

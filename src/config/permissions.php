@@ -1,7 +1,14 @@
 <?php 
 
 return [
-    'groups' => [],
+    'groups' => [
+        [
+            'name' => 'group',
+            'actions' => [
+                'foo'
+            ]
+        ]
+    ],
     'messages' => [
         'invalid_route' => 'Invalid route',
         'module_not_found' => 'Module not found',

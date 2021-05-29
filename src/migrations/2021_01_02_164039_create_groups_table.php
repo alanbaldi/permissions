@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->foreignId('module_id')->nullable()->constrained('permissions_modules');
             $table->timestamps();
         });
     }

@@ -39,6 +39,7 @@ class PermissionServiceProvider extends ServiceProvider
 
         if($this->app->runningInConsole()){
             $this->commands([
+                PermissionsInstall::class,
                 PermissionsGenerate::class,
                 PermissionsMakeGroups::class,
             ]);

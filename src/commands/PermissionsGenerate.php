@@ -44,7 +44,6 @@ class PermissionsGenerate extends Command
             $role = $this->option('role');
             $create = $this->option('create');
             $this->info($role);
-
             DB::beginTransaction();
             Permissions::truncate();
             $this->warn('Generating...');

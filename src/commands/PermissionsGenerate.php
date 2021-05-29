@@ -13,7 +13,7 @@ class PermissionsGenerate extends Command
      *
      * @var string
      */
-    protected $signature = 'permissions:generate';
+    protected $signature = 'permissions:generate {--role=} {--create=false}';
 
     /**
      * The console command description.
@@ -41,11 +41,16 @@ class PermissionsGenerate extends Command
     {
 
         try{
+            $role = $this->option('role');
+            $create = $this->option('create');
+            $this->info($role);
+
             DB::beginTransaction();
             Permissions::truncate();
-            $this->info('Clean all permissions table');
-            Permissions::make();
-            $this->info('success!!');
+            $this->warn('Generating...');
+            Permissions::make($role,$create);
+            $this->info('Success!!');
+
             DB::commit();
             return 0;
         }catch(Exception $e){

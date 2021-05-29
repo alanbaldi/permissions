@@ -13,11 +13,12 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Permissions{
 
-    public static function make(){
+    public static function make($role,$create){
         $routes = Route::getRoutes();
 
         foreach($routes as $route){
             $name_route = $route->getName();
+
             if(self::checkIsPermssion($name_route)){
                 $names = explode(':permission',$name_route);
                 unset($names[count($names)-1]);
@@ -29,14 +30,12 @@ class Permissions{
                 self::generate($array_names,$action);
             }
         }
-
-        self::assignPermissions();
         //some modules are not related, so i relate them to themselves
+        if(!is_null($role)) self::assignPermissions($role,$create);
         self::moduleRelashions();
-
     }
 
-    private static function checkIsPermssion($name) : bool{
+    public static function checkIsPermssion($name) : bool{
         if(is_null($name) || empty($name)){ return false; }
         return !empty(stristr($name,':permission'));
     }
@@ -100,16 +99,24 @@ class Permissions{
         
     }
 
-    private static function assignPermissions(){
-        $root = PermissionRole::where('description','root')->first() ?: PermissionRole::create([
-            'description' => 'root'
-        ]);
+    public static function assignPermissions($nameRole,$create){
+
+        $role = PermissionRole::where('description',$nameRole)->first();
+
+        if(is_null($role)){
+            if ($create){
+                $role = PermissionRole::create([
+                    'description' => $nameRole
+                ]);
+            }
+        }
+    
         $modules = PermissionModule::all();
         $actions = PermissionAction::all();
         $groups = PermissionGroup::all();
-        $root->modules()->attach($modules);
-        $root->actions()->attach($actions);
-        $root->groups()->attach($groups);
+        $role->modules()->attach($modules);
+        $role->actions()->attach($actions);
+        $role->groups()->attach($groups);
 
     }
 
@@ -179,5 +186,11 @@ class Permissions{
                 'module_id' => $module->id
             ]);
         }
+    }
+
+    public static function parseRoute($nameRoute) : string{
+        $route = explode(':permissions',$nameRoute);
+        unset($route[':permissions']);
+        return implode('',$route);
     }
 }

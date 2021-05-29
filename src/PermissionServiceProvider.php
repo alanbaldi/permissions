@@ -2,6 +2,7 @@
 
 namespace Lamplighter\Permissions;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class PermissionServiceProvider extends ServiceProvider
@@ -14,8 +15,9 @@ class PermissionServiceProvider extends ServiceProvider
     public function register()
     {
         //
-
         // $this->app->make(LamplighterPermissionsController::class);
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('permissions', PermissionsMiddleware::class);
     }
 
     /**

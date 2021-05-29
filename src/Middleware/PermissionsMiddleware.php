@@ -23,68 +23,83 @@ class PermissionsMiddleware
     public function handle($request, Closure $next)
     {
 
+        $config_permissions = config('permissions')['messages'];
+
         try{
-            
 
-            if(env("APP_DEBUG")) { return $next($request); } //test mode
-
-            $config_permissions = config('permissions')['messages'];
-            
+            // if(env("APP_DEBUG")) { return $next($request); } //test mode
 
             $route_name = Route::currentRouteName(); //get the current route
 
-            if(is_null($route_name)){
-                throw new Exception($config_permissions['invalid_route']);
-            }
+            if(!Permissions::checkIsPermssion($route_name)) return $next($request);
 
-            $names = explode(".",$route_name);
-            if(count($names) == 1){
-                $search_accion = $names[0];
-                $search_module = $names[0];
-                
-            }else if(count($names) >= 2){
-                $search_accion = explode(':permission',$names[count($names)-1])[0];  //get name action
-                $search_module = $names[count($names)-2]; //get name module
-            }else {
-                throw new Exception($config_permissions['invalid_route']);
-            }
+            $route = Permissions::parseRoute($route_name);
 
-            /** Search module  if exist */
+            $user = $request->user();
 
-            $module = PermissionModule::where('prefix',$search_module)
-            ->first();
+            
 
-            if(is_null($module)){
-                throw new Exception($config_permissions['module_not_found']);
-            }
+            if(is_null($user)) throw new Exception($config_permissions['invalid_route']);
+            $checkPermission = $user->hasPerm($route);
 
-            // dd($module,$search_accion);
-
-            $accion = PermissionAction::where('module_id',$module->id)
-            ->where('name',$search_accion)
-            ->first();
-
-
-            if(is_null($accion)){ //valido si existe la accion
-                throw new Exception('action_not_found');
-            }
-
-            $role_id = Auth::user()->role->id;
-
-            $access = PermissionAction::whereHas('roles',function($roleModel) use ($role_id,$accion) {
-                $roleModel->where('role_id',$role_id)
-                ->where('action_id',$accion->id);
-            })
-            ->where('module_id',$module->id)
-            ->first();
-
-            if(is_null($access)){
-                throw new Exception($config_permissions['permissions_denied']);
-            }
-
+            if(!$checkPermission) throw new Exception($config_permissions['permissions_denied']);
             return $next($request);
-        }catch(Exception $e){
 
+            // $route_name = Route::currentRouteName(); //get the current route
+
+            // dd($route_name);
+
+            // if(is_null($route_name)){
+            //     throw new Exception($config_permissions['invalid_route']);
+            // }
+
+            // $names = explode(".",$route_name);
+            // if(count($names) == 1){
+            //     $search_accion = $names[0];
+            //     $search_module = $names[0];
+                
+            // }else if(count($names) >= 2){
+            //     $search_accion = explode(':permission',$names[count($names)-1])[0];  //get name action
+            //     $search_module = $names[count($names)-2]; //get name module
+            // }else {
+            //     throw new Exception($config_permissions['invalid_route']);
+            // }
+
+            // /** Search module  if exist */
+
+            // $module = PermissionModule::where('prefix',$search_module)
+            // ->first();
+
+            // if(is_null($module)){
+            //     throw new Exception($config_permissions['module_not_found']);
+            // }
+
+            // // dd($module,$search_accion);
+
+            // $accion = PermissionAction::where('module_id',$module->id)
+            // ->where('name',$search_accion)
+            // ->first();
+
+
+            // if(is_null($accion)){ //valido si existe la accion
+            //     throw new Exception('action_not_found');
+            // }
+
+            // $role_id = Auth::user()->role->id;
+
+            // $access = PermissionAction::whereHas('roles',function($roleModel) use ($role_id,$accion) {
+            //     $roleModel->where('role_id',$role_id)
+            //     ->where('action_id',$accion->id);
+            // })
+            // ->where('module_id',$module->id)
+            // ->first();
+
+            // if(is_null($access)){
+            //     throw new Exception($config_permissions['permissions_denied']);
+            // }
+
+            // return $next($request);
+        }catch(Exception $e){
             if($request->ajax()){
                 return response()->json([
                     'status'=>false,
@@ -95,10 +110,5 @@ class PermissionsMiddleware
             abort(403);
             
         }
-
-
-
-
-        
     }
 }

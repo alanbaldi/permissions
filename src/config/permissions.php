@@ -2,12 +2,23 @@
 
 return [
     'groups' => [
-        [
-            'name' => 'group',
-            'actions' => [
-                'foo'
+        /*
+        example declare group to role and module
+        'root' => [ //role
+            'foo' => [ //module
+                //group
+                [
+                    'name' => 'group',
+                    'description' => 'group for view',
+                    
+                    //group's actions
+                    'actions' => [
+                        'foo'
+                    ]
+                ]
+                
             ]
-        ]
+        ]*/
     ],
     'messages' => [
         'invalid_route' => 'Invalid route',

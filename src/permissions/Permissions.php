@@ -80,9 +80,10 @@ class Permissions{
                                     $action = PermissionAction::where('full_name',$action)->first();
                                     if(is_null($action)){ continue; }
                                     $group->actions()->attach($action);
-                                    $role->groups()->attach($action);
                                 }    
                             }
+
+                            $role->groups()->attach($group);
         
                         }
                     }

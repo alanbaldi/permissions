@@ -16,11 +16,7 @@ Despues de haber instalado procede a agregar en los providers que se encuentra e
 Ejecutar los siguientes comandos
 
 ```php
-php artisan vendor:publish --tag="permissions-config"
-```
-
-```php
-php artisan vendor:publish --tag="permissions-migrations"
+php artisan permissions:install
 ```
 
 ```php

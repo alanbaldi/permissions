@@ -9,6 +9,15 @@
             "email": "alanortiz97baldizon@outlook.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lamplighter\\Permissions\\PermissionServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
     "minimum-stability": "stable",
     "require": {},
     "autoload": {

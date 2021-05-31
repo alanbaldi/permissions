@@ -28,7 +28,7 @@ trait Admissibleness{
 
         $module = PermissionModule::where('prefix',$moduleName)->first();
 
-        $hasPerm = $this->hasPermission($module); 
+        $hasPerm = $this->hasModule($module); 
 
         if(!$hasPerm) return collect([]);
 
@@ -78,8 +78,19 @@ trait Admissibleness{
         return !is_null($hasPerm);
     }
 
-    private function hasPermission(PermissionModule $module){
+    /**
+     * 
+     * @param \Lamplighter\Permissions\Models\PermissionModule|string
+     * @return bool
+     */
+
+    public function hasModule($paramModule){
         if(!method_exists($this,'role')) return false;
+
+        $module = $paramModule instanceof PermissionModule ? $paramModule : PermissionModule::where('prefix',$paramModule)
+        ->first();
+
+        if(is_null($module)) return false;
 
         $hasPerm = $this->role->modules()->where([
             'module_id' => $module->id

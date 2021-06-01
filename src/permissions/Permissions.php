@@ -46,6 +46,7 @@ class Permissions{
         PermissionGroup::truncate();
         DB::table('permissions_roles_groups')->truncate();
         DB::table('permissions_groups_actions')->truncate();
+        DB::table('permissions_roles_modules')->truncate();
         DB::statement("SET foreign_key_checks=1");
         $config = config('permissions');
 
@@ -69,6 +70,8 @@ class Permissions{
                         if(is_null($module)){
                             throw new Exception('Don\'t exist module');
                         }
+
+                        $role->modules()->attach($module);
                         foreach($groups[$key][$mkey] as $g){
                             $group = PermissionGroup::create([
                                 'name' => $g['name'],

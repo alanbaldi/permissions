@@ -17,4 +17,8 @@ class PermissionModule extends Model
     public function modules() : HasMany{
         return $this->hasMany(PermissionModule::class,'module_id','id');
     }
+
+    public function groups() : HasMany{
+        return $this->hasMany(PermissionGroup::class,'module_id','id');
+    }
 }

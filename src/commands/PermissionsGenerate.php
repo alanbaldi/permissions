@@ -5,7 +5,7 @@ namespace Lamplighter\Permissions\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Lamplighter\Permissions\Perms\Permissions;
+use Lamplighter\Permissions\Core\Permissions;
 
 class PermissionsGenerate extends Command
 {

@@ -4,7 +4,7 @@ namespace Lamplighter\Permissions\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
-use Lamplighter\Permissions\Perms\Permissions;
+use Lamplighter\Permissions\Core\Permissions;
 
 class PermissionsMakeGroups extends Command
 {

@@ -8,9 +8,9 @@ use Lamplighter\Permissions\Models\Action;
 use Lamplighter\Permissions\Models\Module;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Lamplighter\Permissions\Core\Permissions;
 use Lamplighter\Permissions\Models\PermissionAction;
 use Lamplighter\Permissions\Models\PermissionModule;
-use Lamplighter\Permissions\Perms\Permissions;
 
 class PermissionsMiddleware
 {

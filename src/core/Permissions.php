@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lamplighter\Permissions\Perms;
+namespace Lamplighter\Permissions\Core;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +9,6 @@ use Lamplighter\Permissions\Models\PermissionAction;
 use Lamplighter\Permissions\Models\PermissionGroup;
 use Lamplighter\Permissions\Models\PermissionModule;
 use Lamplighter\Permissions\Models\PermissionRole;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Permissions{
 

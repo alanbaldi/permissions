@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Core;
 
 use Lamplighter\Permissions\Models\PermissionAction;
 use Lamplighter\Permissions\Models\PermissionModule;

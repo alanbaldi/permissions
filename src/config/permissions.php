@@ -3,7 +3,7 @@
 return [
     'groups' => [
         /*
-        example declare group to role and module
+        //example declare group to role and module
         'root' => [ //role
             'foo' => [ //module
                 //group

@@ -4,6 +4,10 @@ namespace Lamplighter\Permissions;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Lamplighter\Permissions\Commands\PermissionsGenerate;
+use Lamplighter\Permissions\Commands\PermissionsInstall;
+use Lamplighter\Permissions\Commands\PermissionsMakeGroups;
+use Lamplighter\Permissions\Middleware\PermissionsMiddleware;
 
 class PermissionServiceProvider extends ServiceProvider
 {
@@ -41,7 +45,7 @@ class PermissionServiceProvider extends ServiceProvider
             $this->commands([
                 PermissionsInstall::class,
                 PermissionsGenerate::class,
-                PermissionsMakeGroups::class,
+                PermissionsMakeGroups::class
             ]);
         }
     }

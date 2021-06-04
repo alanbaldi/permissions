@@ -1,6 +1,6 @@
 <?php 
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Perms;
 
 use Exception;
 use Illuminate\Support\Facades\DB;

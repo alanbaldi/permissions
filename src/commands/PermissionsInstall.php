@@ -1,6 +1,6 @@
 <?php
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Commands;
 
 use Exception;
 use Illuminate\Console\Command;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Middleware;
 
 use Closure;
 use Exception;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Lamplighter\Permissions\Models\PermissionAction;
 use Lamplighter\Permissions\Models\PermissionModule;
+use Lamplighter\Permissions\Perms\Permissions;
 
 class PermissionsMiddleware
 {

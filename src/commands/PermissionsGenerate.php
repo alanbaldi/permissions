@@ -1,10 +1,11 @@
 <?php
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Lamplighter\Permissions\Perms\Permissions;
 
 class PermissionsGenerate extends Command
 {

@@ -1,9 +1,10 @@
 <?php
 
-namespace Lamplighter\Permissions;
+namespace Lamplighter\Permissions\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
+use Lamplighter\Permissions\Perms\Permissions;
 
 class PermissionsMakeGroups extends Command
 {
